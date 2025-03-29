@@ -1,0 +1,50 @@
+# Fake News Prediction System
+
+Este proyecto tiene como objetivo predecir si una noticia es falsa o no utilizando un modelo de clasificación. El sistema consta de dos partes principales:
+
+1. **Back-End**: Un servidor RESTful implementado con **FastAPI**, que maneja las predicciones y el reentrenamiento del modelo.
+2. **Front-End**: Una interfaz de usuario web construida con **React**, que permite a los usuarios interactuar con el modelo para predecir noticias individuales, cargar archivos CSV para predicciones masivas y reentrenar el modelo.
+
+## Requisitos
+
+### Para el Back-End:
+- **Python 3.8 o superior**
+- **FastAPI**
+- **Uvicorn**
+- **scikit-learn**
+- **pandas**
+- **joblib**
+- **nltk**
+- **spacy**
+- **pydantic**
+- **python-multipart**
+- **loguru** (para el logging)
+
+### Para el Front-End:
+- **Node.js** (al menos v14)
+- **npm** (para gestionar las dependencias)
+- **React** (versión 17 o superior)
+- **Axios** (para manejar las peticiones HTTP)
+- **React Icons** (para íconos)
+
+## Instalación
+
+### 1. Back-End (Estar dentro de la carpeta llamada Api)
+
+#### Paso 1: Instalar dependencias
+pip install -r requirements.txt
+
+#### Paso 2: Correr la Api
+uvicorn Main:app --reload
+
+ó
+
+python -m uvicorn Main:app --reload
+
+### 2. Front-End (Estar dentro de la carpeta llamada front)
+
+#### Paso 1. Instalar dependencias
+npm install
+
+#### Paso 2. Correr el front
+npm start
