@@ -1,0 +1,179 @@
+body {
+  background-color: white;
+  color: black;
+}
+
+
+/* Contenedor general centrado */
+.container {
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 15vh;
+  background-color: white;
+  box-sizing: border-box;
+}
+
+/* Estilo de las pestañas */
+.tabs {
+  display: flex;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 2rem;
+  gap: 1rem;
+}
+
+.tab {
+  background: none;
+  border: none;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  color: #555;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.tab:hover {
+  color: #000;
+}
+
+.tab.active {
+  color: #000;
+  font-weight: 600;
+  border-bottom: 2px solid #c68f65;
+}
+
+/* Estilo del contenedor de cada sección */
+.card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: 1000px;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+/* Campo de texto y archivo */
+.input,
+.file-input {
+  flex-grow: 1;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 9999px;
+  font-size: 1rem;
+  background-color: white;
+  color: #333;
+  outline: none;
+}
+
+/* Botones */
+.btn {
+  padding: 0.75rem 1.25rem;
+  background-color: #64c2d0;
+  border: none;
+  border-radius: 9999px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.3s ease;
+}
+
+.file-hidden {
+  display: none;
+}
+
+.file-btn {
+  flex-grow: 1;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  background-color: #f2f2f2;
+  border: 1px solid #ccc;
+  border-radius: 9999px;
+  color: #333;
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+
+.file-msg {
+  margin-top: 0.25rem;
+  font-size: 0.9rem;
+  color: #999;
+  font-style: italic;
+  text-align: left;
+  width: 55%;
+}
+
+
+
+.file-btn:hover {
+  background-color: #e6e6e6;
+}
+
+.btn:hover {
+  background-color: #4db3c3;
+}
+
+.fade {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* 🌙 Estilos para modo oscuro */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #121212;
+    color: #f0f0f0;
+  }
+
+  .container {
+    background-color: #121212;
+  }
+
+  .input,
+  .file-btn {
+    background-color: #1e1e1e;
+    border-color: #444;
+    color: #eee;
+  }
+
+  .btn {
+    background-color: #64c2d0;
+    color: white;
+  }
+
+  .tab {
+    background-color: transparent;
+    color: #ccc;
+  }
+
+  .tab.active {
+    color: white;
+    border-bottom-color: #c68f65;
+  }
+
+  .file-msg {
+    color: #aaa;
+  }
+}
+
