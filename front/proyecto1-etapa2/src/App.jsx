@@ -15,17 +15,59 @@ function App() {
   const handleFile1Change = (e) => setFile1(e.target.files[0]);
   const handleFile2Change = (e) => setFile2(e.target.files[0]);
 
-  const handlePredictSingle = () => {
-    console.log("Texto único a predecir:", text);
+  const handlePredictSingle = async () => {
+    const body = [{ Titulo: text, Descripcion: "" }];
+    try {
+      const response = await fetch("http://localhost:8000/predict", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body)
+      });
+      const result = await response.json();
+      console.log("Predicción:", result);
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
+  
 
-  const handlePredictMultiple = () => {
-    console.log("Archivo para predicción múltiple:", file1);
+  const handlePredictMultiple = async () => {
+    if (!file1) return;
+  
+    const formData = new FormData();
+    formData.append("file", file1);
+  
+    try {
+      const response = await fetch("http://localhost:8000/predict_csv", {
+        method: "POST",
+        body: formData
+      });
+      const result = await response.json();
+      console.log("Predicción múltiple:", result);
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
+  
 
-  const handleTrain = () => {
-    console.log("Archivo para entrenamiento:", file2);
+  const handleTrain = async () => {
+    if (!file2) return;
+  
+    const formData = new FormData();
+    formData.append("file", file2);
+  
+    try {
+      const response = await fetch("http://localhost:8000/retrain", {
+        method: "POST",
+        body: formData
+      });
+      const result = await response.json();
+      console.log("Entrenamiento:", result);
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
+  
 
   const renderTabContent = () => {
     let content;

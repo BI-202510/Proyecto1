@@ -1,5 +1,6 @@
 from fastapi import FastAPI, HTTPException, UploadFile, File
 from pydantic import BaseModel
+from EntrenarModelo import LimpiarTextoTransformer
 from typing import List
 import pandas as pd
 import io
