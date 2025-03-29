@@ -25,10 +25,8 @@ class PerfilamientoTransformer(BaseEstimator, TransformerMixin):
     def transform(self, X, y=None):
         # Suponemos que X es un DataFrame
         df = X.copy()
-        # Eliminamos la columna "ID"
-        df = df.drop("ID", axis=1)
-        # Eliminamos la columna "Fecha"
-        df = df.drop("Fecha", axis=1)
+        # Eliminar "ID" y "Fecha" solo si existen
+        df = df.drop(columns=["ID", "Fecha"], errors="ignore")
         # Eliminamos filas con valores nulos
         df = df.dropna()
         # Eliminamos duplicados en la columna 'Titulo'
@@ -106,25 +104,27 @@ class VectorizarHashingTransformer(BaseEstimator, TransformerMixin):
         textos = df["Titulo"] + " " + df["Descripcion"]
         return self.vectorizer.transform(textos)
 
-# Cargar datos
+# Cargar datos y aplicar perfilamiento
 db_location = 'fake_news_spanish.csv'
 df = pd.read_csv(db_location, sep=';', encoding="utf-8")
 
+perfilador = PerfilamientoTransformer()
+df_clean = perfilador.transform(df)
+
+# Preparar datos para entrenamiento y prueba
+X = df_clean[["Titulo", "Descripcion"]]
+y = df_clean["Label"]
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+clases = df_clean["Label"].unique()
+
 # Pipeline
 pipeline = Pipeline([
-    ('perfilamiento', PerfilamientoTransformer()),
     ('limpiar_texto', LimpiarTextoTransformer()),
     ('lematizar', LematizarTransformer()),
     ('vectorizar', VectorizarHashingTransformer(n_features=5000)),
     ('modeloClf', MultinomialNB())
 ])
-
-# Preparar datos para entrenamiento y prueba
-X = df[["Titulo", "Descripcion"]]
-y = df["Label"]
-
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-clases = df["Label"].unique()
 
 # Transformar los datos hasta la etapa de vectorización
 # Aquí transformamos los datos usando todas las etapas excepto el modelo
