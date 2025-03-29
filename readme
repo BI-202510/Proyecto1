@@ -41,7 +41,7 @@ uvicorn Main:app --reload
 
 python -m uvicorn Main:app --reload
 
-### 2. Front-End (Estar dentro de la carpeta llamada front)
+### 2. Front-End (Estar dentro de la carpeta llamada front/proyecto1-etapa2)
 
 #### Paso 1. Instalar dependencias
 npm install
