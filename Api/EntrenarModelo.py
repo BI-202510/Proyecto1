@@ -2,17 +2,16 @@ import pandas as pd
 import unicodedata
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
-import spacy
-import joblib
-
-# Cargar el modelo de spaCy para español (Instalar: python -m spacy download es_core_news_sm)
-nlp = spacy.load("es_core_news_sm")
-
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.feature_extraction.text import HashingVectorizer
 from sklearn.pipeline import Pipeline
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.model_selection import train_test_split
+import spacy
+import joblib
+
+# Cargar el modelo de spaCy para español (Instalar: python -m spacy download es_core_news_sm)
+nlp = spacy.load("es_core_news_sm")
 
 # Transformador para el perfilamiento
 class PerfilamientoTransformer(BaseEstimator, TransformerMixin):
@@ -87,7 +86,7 @@ class LematizarTransformer(BaseEstimator, TransformerMixin):
 
 # Transformador para la vectorización con HashingVectorizer
 class VectorizarHashingTransformer(BaseEstimator, TransformerMixin):
-    def __init__(self, n_features=5000):
+    def __init__(self, n_features=1000):  # Reducir el número de características
         self.n_features = n_features
         self.vectorizer = HashingVectorizer(
             token_pattern=r"(?u)\b[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ]{2,}\b",

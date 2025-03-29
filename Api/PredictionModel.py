@@ -13,9 +13,7 @@ def load_pipeline(pipeline_path: str = "assets/modelo.joblib"):
 # Función de predicción: transforma la entrada y usa el modelo para predecir
 def predict(pipeline, input_df: pd.DataFrame):
     try:
-        # Transformar los datos usando todas las etapas del pipeline excepto el modelo
         X_trans = pipeline[:-1].transform(input_df)
-        # Obtener predicciones desde el modelo incremental
         predictions = pipeline.named_steps["modeloClf"].predict(X_trans)
         return predictions
     except Exception as e:

@@ -3,7 +3,6 @@ body {
   color: black;
 }
 
-
 /* Contenedor general centrado */
 .container {
   min-height: 100vh;
@@ -55,6 +54,7 @@ body {
   max-width: 1000px;
   padding: 1rem;
   box-sizing: border-box;
+  flex-direction: column; /* Cambié la dirección para que se apilen verticalmente */
 }
 
 /* Campo de texto y archivo */
@@ -68,6 +68,70 @@ body {
   background-color: white;
   color: #333;
   outline: none;
+}
+
+textarea {
+  flex-grow: 1;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 9999px;
+  font-size: 1rem;
+  background-color: white;
+  color: #333;
+  outline: none;
+  resize: none; /* Evita que el usuario cambie el tamaño manualmente */
+  width: 100%; /* Asegura que ocupe el 100% del contenedor */
+  box-sizing: border-box; /* Incluye el padding y el borde en el cálculo del tamaño */
+}
+
+/* Hacer que el textarea crezca según el contenido */
+textarea {
+  min-height: 50px; /* Tamaño mínimo de la caja de texto */
+  overflow: hidden;
+  word-wrap: break-word;
+  height: auto;
+}
+
+textarea:focus {
+  border-color: #007bff; /* Cambia el color del borde al hacer focus */
+}
+
+.resultados {
+  margin-top: 20px; /* Añadí espacio entre la entrada y la tabla */
+  width: 100%;
+  max-width: 800px; /* Ajusté el ancho máximo para que se vea mejor */
+  overflow-x: auto; /* Permite desplazamiento horizontal si la tabla es muy ancha */
+}
+
+.resultados-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.resultados-table th,
+.resultados-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.resultados-table th {
+  background-color: #f2f2f2; /* En modo claro */
+  color: black; /* Texto en negro para modo claro */
+}
+
+.resultados h2 {
+  margin-bottom: 10px;
+  color: #555; /* Apliqué un color gris en lugar de blanco para más contraste */
+  font-size: 1.2rem;
+}
+
+.resultados-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.resultados-table tr:hover {
+  background-color: #f1f1f1;
 }
 
 /* Botones */
@@ -103,17 +167,37 @@ body {
   transition: background-color 0.3s ease;
 }
 
-
 .file-msg {
   margin-top: 0.25rem;
   font-size: 0.9rem;
   color: #999;
   font-style: italic;
-  text-align: left;
+  text-align: center;
   width: 55%;
 }
 
+.error-message {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
 
+.metrics {
+  margin-top: 20px;
+}
+
+.metrics h3 {
+  color: #4db3c3;
+}
+
+.metrics ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.metrics li {
+  margin: 5px 0;
+}
 
 .file-btn:hover {
   background-color: #e6e6e6;
@@ -137,7 +221,6 @@ body {
     transform: translateY(0);
   }
 }
-
 
 /* 🌙 Estilos para modo oscuro */
 @media (prefers-color-scheme: dark) {
@@ -177,3 +260,11 @@ body {
   }
 }
 
+.resultados-table th {
+  background-color: #333; /* Fondo oscuro en modo oscuro */
+  color: #fff; /* Texto blanco para buena visibilidad */
+}
+
+.resultados-table td {
+  color: #ddd; /* Texto más claro en las celdas */
+}
