@@ -47,4 +47,4 @@ python -m uvicorn Main:app --reload
 npm install
 
 #### Paso 2. Correr el front
-npm start
+npm run dev
